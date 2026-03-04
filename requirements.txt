@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+python-dotenv
+openai
+langchain
+langchain-community
+chromadb
+pypdf
+markdown
+unstructured
+pandas
+numpy
+redis

@@ -1,0 +1,32 @@
+POST http://localhost:8000/chat
+Content-Type: application/json
+
+{
+  "conversation_id": "user001",
+  "query": "年假有多少天？"
+}
+###
+POST http://localhost:8000/chat
+Content-Type: application/json
+
+{
+  "conversation_id": "user002",
+  "query": "那试用期员工呢？"
+}
+
+###
+POST http://localhost:8000/chat
+Content-Type: application/json
+
+{
+  "conversation_id": "user003",
+  "query": "查一下快递单号 SF123456789"
+}
+### 闲聊测试
+POST http://localhost:8000/chat
+Content-Type: application/json
+
+{
+  "conversation_id": "user004",
+  "query": "你好"
+}
