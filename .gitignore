@@ -1,0 +1,20 @@
+# 虚拟环境
+venv/
+.env
+
+# Python 缓存
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# IDE 配置
+.idea/
+.vscode/
+
+# 向量数据库（可选，文件较大可不传）
+faiss_index/
+
+# 其他临时文件
+*.log
+.DS_Store
