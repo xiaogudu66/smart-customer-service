@@ -45,3 +45,36 @@ if prompt := st.chat_input("请输入你的问题..."):
 
         st.markdown(answer)
         st.session_state.messages.append({"role": "assistant", "content": answer})
+
+# ui.py (在原文件基础上添加)
+import streamlit as st
+import requests
+import uuid
+
+# ... 原有的页面配置和聊天逻辑 ...
+
+# 在侧边栏添加上传区域
+with st.sidebar:
+    st.header("📤 扩展知识库")
+    uploaded_file = st.file_uploader("上传新文档 (PDF/TXT/MD)", type=["pdf", "txt", "md"])
+
+    if uploaded_file is not None:
+        # 显示上传按钮
+        if st.button("开始上传并处理"):
+            with st.spinner("正在处理文档，请稍候..."):
+                # 准备文件
+                files = {"file": (uploaded_file.name, uploaded_file.getvalue(), uploaded_file.type)}
+                try:
+                    response = requests.post("http://localhost:8000/upload", files=files, timeout=300)
+                    if response.status_code == 200:
+                        st.success(f"✅ 文档已成功添加到知识库！")
+                    else:
+                        st.error(f"❌ 处理失败：{response.json().get('detail', '未知错误')}")
+                except Exception as e:
+                    st.error(f"❌ 请求异常：{str(e)}")
+
+    st.divider()
+    st.markdown("### 当前会话ID")
+    st.code(st.session_state.conversation_id)
+
+# ... 原有的聊天界面代码保持不变 ...
